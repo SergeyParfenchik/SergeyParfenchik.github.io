@@ -1,0 +1,37 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background-color: #FFF7D4;
+	font-family: 'Lobster', cursive;
+	font-size: 150%;
+}
+
+h2, h3, h4, h5, h6{
+	color: #4C3D3D;
+	text-align: center;
+}
+
+#head {
+	background-color: #4C3D3D;
+	text-align: center;
+	padding: 20px;
+	color: #FFD95A;
+}
+
+#mySkills{
+	padding-top: 30px;
+	padding-left: 60px;
+	padding-right: 60px;
+}
+
+#skillList {
+	border: 3px #C07F00 dotted;
+	padding-top: 30px;
+	padding-left: 60px;
+	padding-right: 60px;
+	padding-bottom: 30px;
+	color: #4C3D3D;
+}
