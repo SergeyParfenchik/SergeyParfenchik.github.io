@@ -1,29 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sergey Parfenchik</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, minimum-scale=0.1, maximum-scale=4.0">
+
+    <title>курсовой проект</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div id="head">
-		<h1>Серёга Прогер</h1>
-		<p>"Возьмите на работу, пж"</p>
-	</div>
-	<div id="mySkills">
-		<h2>Мои скиллы</h2>
-		<div id="skillList">
-			<ul>
-  				<li>Знаю Java на уровне синьора-помидора</li>
- 				<li>5 минут назад выучил Git</li>
-  				<li>Немного умею в HTML и CSS</li>
-  				<li>Самостоятельно <s>хожу в туалет</s> выполняю поставленные задачи</li>
-			</ul>
-		</div>
-	</div>
+    <div class="box">
+        <canvas id="cnv" height="500px" width="500px"></canvas>
+        <button id="saveButton">Сохранить изображение</button>
+    </div>
+    
+    <div class="box">
+        <p><b>Правила:</b></p>
+        <div class="rules">
+            <table id="rulesTable">
+                <thead>
+                    <tr>
+                        <th>Прототип</th>
+                        <th>Преемник</th>
+                        <th>Вероятность</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Данные таблицы будут добавляться здесь -->
+                </tbody>
+            </table>
+        </div>
+        <p><b>Характеристики:</b></p>
+        <table id="characteristics">
+            <tbody>
+                <tr>
+                    <td>Старт (аксиома):</td>
+                    <td><input  type="text" id="start" placeholder="старт"></td>
+                </tr>
+                <tr>
+                    <td>Угол:</td>
+                    <td><input  type="number" id="angle" placeholder="Угол"></td>
+                </tr>
+                <tr>
+                    <td>Ширина сегмента:</td>
+                    <td><input  type="number" id="width" placeholder="Ширина" min="0"></td>
+                </tr>
+                <tr>
+                    <td>Длина сегмента:</td>
+                    <td><input  type="number" id="length" placeholder="Длина" min="0"></td>
+                </tr>
+                <tr>
+                    <td>Количество итераций:</td>
+                    <td><input  type="number" id="iterations" placeholder="Итерации" min="1"></td>
+                </tr>
+                <tr>
+                    <td>x:</td>
+                    <td><input  type="number" id="positionx" placeholder="x"></td>
+                </tr>
+                <tr>
+                    <td>y:</td>
+                    <td><input  type="number" id="positiony" placeholder="y"></td>
+                </tr>
+            </tbody>
+        </table>
+        <button onclick="saveNewCharacteristics()">Обновить</button>
+        <p><b>Примеры:</b></p>
+        <select id="examples" name="examples" onchange="example()">
+            <option value="Plant1">Растение 1</option>
+            <option value="Plant2">Растение 2</option>
+            <option value="Plant3">Растение 3</option>
+            <option value="SierpinskiTriangleCurves">Треугольник Серпинского (кривая)</option>
+            <option value="SierpinskiTriangleTriangles">Треугольник Серпинского (треугольники)</option>
+            <option value="DragonCurve">Кривая Дракона</option>
+            <option value="KochSnowflake">Снежинкой Коха</option>
+            <option value="Leaf">Лист</option>
+        </select>
+    </div>
+
+    <div class="box">
+        <div class="accordion">
+            <button class="accordion-button">Что такое L-системы?</button>
+            <div class="accordion-content">
+                <p>L-системы, или Lindenmayer Systems, представляют собой математический инструмент, который используется для моделирования фрактальных структур, характерных для природных объектов, таких как деревья, кустарники и листья. Они работают на основе формальной грамматики, позволяющей генерировать сложные формы и узоры из простых начальных элементов с помощью итеративного применения правил переписывания.</p>
+                <p>В контексте данной программы под фракталами будем понимать объекты обладающее свойствами самоподобия.</p>
+            </div>
+        </div>
+        <div class="accordion">
+            <button class="accordion-button">Как работают L-системы?</button>
+            <div class="accordion-content">
+                <p>L-системы создают фрактальные структуры, начиная с базовой строки (аксиомы), которая на каждом шаге итерации преобразуется согласно заданным правилам. Эти итерации формируют всё более сложные модели, которые напоминают ветвление деревьев или расположение листьев.</p>
+                <p>Использование геометрических интерпретаций, таких как черепашья графика, позволяет визуализировать эти строки как реалистичные природные формы.</p>
+            </div>
+        </div>
+        <div class="accordion">
+            <button class="accordion-button">Как использовать правила?</button>
+            <div class="accordion-content">
+                <p>
+                    Правила в L-системах задают алгоритмы, определяющие,
+                    как каждый элемент структуры преобразуется на
+                    следующем шаге моделирования.
+                    В стохастических L-системах правила включают
+                    вероятность, что позволяет моделировать 
+                   естественное разнообразие, характерное для природных 
+                   объектов, где нет двух одинаковых форм.
+                </p>
+                <p>
+                    Например, если прототипу "A" соответствует преемник "BCD", то на каждой итерации символ "A", если такой есть в системе, будет заменен на строку "BCD".
+                    Если прототипу соответствуют несколько преемников, то будет выбран один случайный с вероятностью заданной в соответсвующем столбце.
+                </p>
+            </div>
+        </div>
+        
+        <div class="accordion">
+            <button class="accordion-button">Интерпретация символов</button>
+            <div class="accordion-content">
+                <div class="wrap">
+                    <table id="interpretation-table">
+                        <thead>
+                            <tr>
+                                <th>Символ</th>
+                                <th>Интерпретация</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>A-Z</td>
+                                <td>Нарисовать сегмент (линию). Рисуется в направлении ориентации кисти</td>
+                            </tr>
+                            <tr>
+                                <td>a-z</td>
+                                <td>Двигаться вперед (не рисуя). Длина движения равна длине сегмента</td>
+                            </tr>
+                            <tr>
+                                <td>+</td>
+                                <td>Повернуть вправо на заданный угол</td>
+                            </tr>
+                            <tr>
+                                <td>-</td>
+                                <td>Повернуть влево на заданный угол</td>
+                            </tr>
+                            <tr>
+                                <td>[</td>
+                                <td>Сохранить текущее состояние в стеке </td>
+                            </tr>
+                            <tr>
+                                <td>]</td>
+                                <td>Загрузить состояние из стека</td>
+                            </tr>
+                            <tr>
+                                <td>{</td>
+                                <td>Сохраните текущий многоугольник в стек и начать записывать точки нового многоугольника</td>
+                            </tr>
+                            <tr>
+                                <td>.</td>
+                                <td>Добавить точку к текущему многоугольнику</td>
+                            </tr>
+                            <tr>
+                                <td>}</td>
+                                <td>Нарисовать многоугольник, и загрузить старый из стека, если такой есть</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="drawing.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
