@@ -1,37 +1,159 @@
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
 body {
-	background-color: #FFF7D4;
-	font-family: 'Lobster', cursive;
-	font-size: 150%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Элементы переносятся, если не хватает места */
+    height: 100vh;
+    background-color: #f7dddd;
+    font-family: Arial, sans-serif;
 }
 
-h2, h3, h4, h5, h6{
-	color: #4C3D3D;
-	text-align: center;
+.container {
+    display: flex; /* Flexbox для равной высоты */
+    flex-wrap: wrap; /* Перенос элементов на следующую строку для мобильных */
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
 }
 
-#head {
-	background-color: #4C3D3D;
-	text-align: center;
-	padding: 20px;
-	color: #FFD95A;
+.box {
+    flex: 1 1 45%; /* Блоки занимают 45% ширины */
+    width: 100%;
+    max-width: 500px;
+    height: 85%;
+    margin: 5px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    display: flex; /* Для внутреннего содержимого */
+    flex-direction: column;
 }
 
-#mySkills{
-	padding-top: 30px;
-	padding-left: 60px;
-	padding-right: 60px;
+/* Центровка canvas */
+#cnv {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    max-height: 500px;
 }
 
-#skillList {
-	border: 3px #C07F00 dotted;
-	padding-top: 30px;
-	padding-left: 60px;
-	padding-right: 60px;
-	padding-bottom: 30px;
-	color: #4C3D3D;
+/* Таблицы */
+table {
+    width: 100%;
+    margin-bottom: 15px;
+    border-collapse: collapse;
+}
+
+#interpretation-table td {
+    padding: 10px;
+}
+
+thead {
+    font-size: 80%;
+}
+td {
+    padding: 3px;
+    border: 1px solid #00000010;
+}
+
+#newKey, #newValue {
+    width: 100px;
+}
+
+#newProbability {
+    width: 80px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Селект */
+select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.table-text {
+    padding: 10px;
+    width: 75px;
+    font-size: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.table-button {
+    width: 90px;
+}
+
+.rules {
+  border: 1px solid #00000000;
+  width: 450px;
+  height: 210px;
+  overflow: auto;
+  padding: 20px;
+}
+
+
+.accordion {
+    margin-bottom: 10px;
+    border-radius: 0px;
+    overflow: hidden;
+    border: none;
+}
+
+.accordion-button {
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #d0bbff;
+    color: #000;
+    cursor: pointer;
+    padding: 10px;
+    text-align: left;
+    font-size: 13px;
+    width: 100%;
+    border-radius: 0px;
+    
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.accordion-button:hover {
+    background-color: #ddd;
+}
+.wrap {
+    width: 100%;
+    max-width: 450px;
+    height: 100%;
+    max-height: 400px;
+    overflow: auto;
+    padding: 20px;
+}
+.accordion-content {
+    max-height: 0; /* Скрыто по умолчанию */
+    overflow: hidden;
+    padding: 0 15px;
+    background-color: #fafafa;
+    transition: max-height 0.3s ease-out;
+    
+}
+
+.accordion-content p {
+    margin: 15px 0;
 }
